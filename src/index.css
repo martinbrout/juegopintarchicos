@@ -1,0 +1,50 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #fff8f0;
+  --color-primary: #ff6bb3;
+  --color-secondary: #7bc8f7;
+  --color-accent: #ffd700;
+  --color-dark: #3a3a5c;
+  --color-surface: #ffffff;
+  --color-border: #e8d5f0;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 16px rgba(0,0,0,0.10);
+  --font-main: 'Segoe UI', 'Arial Rounded MT Bold', Arial, sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--color-bg);
+  color: var(--color-dark);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+  user-select: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-main);
+  border: none;
+  outline: none;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+input[type="file"] {
+  display: none;
+}

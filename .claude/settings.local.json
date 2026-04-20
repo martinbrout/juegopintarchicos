@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell(Get-ChildItem \"C:\\\\Program Files\\\\nodejs\" -ErrorAction SilentlyContinue; Get-ChildItem \"$env:APPDATA\\\\npm\" -ErrorAction SilentlyContinue | Select-Object -First 5; Get-ChildItem \"C:\\\\Program Files\\\\nvm\" -ErrorAction SilentlyContinue | Select-Object -First 5; Get-ChildItem \"$env:LOCALAPPDATA\\\\Programs\\\\nodejs\" -ErrorAction SilentlyContinue | Select-Object -First 5)",
+      "PowerShell(Get-ChildItem \"C:\\\\Proyectos\\\\Personal\\\\JuegoPintar\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object FullName)",
+      "PowerShell($env:PATH = \"C:\\\\Program Files\\\\nodejs;\" + $env:PATH; Set-Location \"C:\\\\Proyectos\\\\Personal\\\\JuegoPintar\"; Start-Process -FilePath \"C:\\\\Program Files\\\\nodejs\\\\npm.cmd\" -ArgumentList \"run\",\"dev\" -WorkingDirectory \"C:\\\\Proyectos\\\\Personal\\\\JuegoPintar\" -WindowStyle Hidden; Start-Sleep -Seconds 4; Write-Output \"Server started\")",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

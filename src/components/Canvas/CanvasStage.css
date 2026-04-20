@@ -1,0 +1,22 @@
+.canvas-stage-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #ede9fe;
+  padding: 6px;
+  overflow: hidden;
+  min-height: 0;
+  min-width: 0;
+}
+
+.canvas-stage {
+  position: relative;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(100, 60, 180, 0.15);
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}

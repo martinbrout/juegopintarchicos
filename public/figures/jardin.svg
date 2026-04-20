@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" fill="none" stroke="black" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Ground -->
+  <path d="M0,720 Q300,680 600,720 Q900,760 1200,720 L1200,900 L0,900 Z"/>
+  <!-- Grass tufts -->
+  <path d="M80,720 C75,695 85,685 90,700 C95,685 105,695 100,720" fill="none" stroke-width="5"/>
+  <path d="M200,715 C195,690 205,680 210,695 C215,680 225,690 220,715" fill="none" stroke-width="5"/>
+  <path d="M1050,718 C1045,693 1055,683 1060,698 C1065,683 1075,693 1070,718" fill="none" stroke-width="5"/>
+
+  <!-- Big flower left -->
+  <line x1="220" y1="720" x2="220" y2="480" stroke-width="10" fill="none"/>
+  <path d="M218,600 C170,565 140,585 155,620 C165,645 200,638 218,620"/>
+  <ellipse cx="220" cy="420" rx="45" ry="78" fill="none" stroke="black" stroke-width="5"/>
+  <ellipse cx="220" cy="420" rx="45" ry="78" fill="none" stroke="black" stroke-width="5" transform="rotate(45 220 480)"/>
+  <ellipse cx="220" cy="420" rx="45" ry="78" fill="none" stroke="black" stroke-width="5" transform="rotate(90 220 480)"/>
+  <ellipse cx="220" cy="420" rx="45" ry="78" fill="none" stroke="black" stroke-width="5" transform="rotate(135 220 480)"/>
+  <circle cx="220" cy="480" r="62" fill="none" stroke="black" stroke-width="6"/>
+  <circle cx="205" cy="468" r="9" fill="black" stroke="none"/>
+  <circle cx="235" cy="468" r="9" fill="black" stroke="none"/>
+  <path d="M208,492 Q220,504 232,492" fill="none" stroke-width="5"/>
+
+  <!-- Big flower right -->
+  <line x1="980" y1="720" x2="980" y2="480" stroke-width="10" fill="none"/>
+  <path d="M982,600 C1030,565 1060,585 1045,620 C1035,645 1000,638 982,620"/>
+  <ellipse cx="980" cy="420" rx="45" ry="78" fill="none" stroke="black" stroke-width="5"/>
+  <ellipse cx="980" cy="420" rx="45" ry="78" fill="none" stroke="black" stroke-width="5" transform="rotate(45 980 480)"/>
+  <ellipse cx="980" cy="420" rx="45" ry="78" fill="none" stroke="black" stroke-width="5" transform="rotate(90 980 480)"/>
+  <ellipse cx="980" cy="420" rx="45" ry="78" fill="none" stroke="black" stroke-width="5" transform="rotate(135 980 480)"/>
+  <circle cx="980" cy="480" r="62" fill="none" stroke="black" stroke-width="6"/>
+  <circle cx="965" cy="468" r="9" fill="black" stroke="none"/>
+  <circle cx="995" cy="468" r="9" fill="black" stroke="none"/>
+  <path d="M968,492 Q980,504 992,492" fill="none" stroke-width="5"/>
+
+  <!-- Butterfly center -->
+  <ellipse cx="600" cy="380" rx="14" ry="40" fill="none" stroke="black" stroke-width="5"/>
+  <line x1="592" y1="350" x2="550" y2="305"/><circle cx="547" cy="301" r="8" fill="black" stroke="none"/>
+  <line x1="608" y1="350" x2="650" y2="305"/><circle cx="653" cy="301" r="8" fill="black" stroke="none"/>
+  <path d="M585,365 C510,310 380,305 390,380 C400,430 500,430 585,400"/>
+  <path d="M615,365 C690,310 820,305 810,380 C800,430 700,430 615,400"/>
+  <path d="M582,398 C510,415 430,465 460,520 C485,560 560,535 582,460"/>
+  <path d="M618,398 C690,415 770,465 740,520 C715,560 640,535 618,460"/>
+  <ellipse cx="490" cy="365" rx="42" ry="28" fill="none" stroke="black" stroke-width="3"/>
+  <ellipse cx="710" cy="365" rx="42" ry="28" fill="none" stroke="black" stroke-width="3"/>
+
+  <!-- Small flowers scattered -->
+  <circle cx="430" cy="700" r="20" fill="none" stroke="black" stroke-width="4"/>
+  <ellipse cx="430" cy="672" rx="13" ry="22" fill="none" stroke="black" stroke-width="3"/>
+  <ellipse cx="430" cy="672" rx="13" ry="22" fill="none" stroke="black" stroke-width="3" transform="rotate(60 430 700)"/>
+  <ellipse cx="430" cy="672" rx="13" ry="22" fill="none" stroke="black" stroke-width="3" transform="rotate(120 430 700)"/>
+  <line x1="430" y1="720" x2="430" y2="760" stroke-width="7" fill="none"/>
+
+  <circle cx="770" cy="695" r="20" fill="none" stroke="black" stroke-width="4"/>
+  <ellipse cx="770" cy="667" rx="13" ry="22" fill="none" stroke="black" stroke-width="3"/>
+  <ellipse cx="770" cy="667" rx="13" ry="22" fill="none" stroke="black" stroke-width="3" transform="rotate(60 770 695)"/>
+  <ellipse cx="770" cy="667" rx="13" ry="22" fill="none" stroke="black" stroke-width="3" transform="rotate(120 770 695)"/>
+  <line x1="770" y1="715" x2="770" y2="755" stroke-width="7" fill="none"/>
+
+  <!-- Clouds -->
+  <ellipse cx="150" cy="150" rx="80" ry="48" fill="none" stroke="black" stroke-width="5"/>
+  <ellipse cx="105" cy="158" rx="52" ry="40" fill="none" stroke="black" stroke-width="5"/>
+  <ellipse cx="198" cy="158" rx="55" ry="42" fill="none" stroke="black" stroke-width="5"/>
+  <ellipse cx="1050" cy="150" rx="80" ry="48" fill="none" stroke="black" stroke-width="5"/>
+  <ellipse cx="1005" cy="158" rx="52" ry="40" fill="none" stroke="black" stroke-width="5"/>
+  <ellipse cx="1098" cy="158" rx="55" ry="42" fill="none" stroke="black" stroke-width="5"/>
+  <!-- Sun -->
+  <circle cx="600" cy="130" r="55" fill="none" stroke="black" stroke-width="6"/>
+  <line x1="600" y1="60" x2="600" y2="38" stroke-width="5"/>
+  <line x1="639" y1="72" x2="652" y2="54" stroke-width="5"/>
+  <line x1="668" y1="101" x2="686" y2="90" stroke-width="5"/>
+  <line x1="676" y1="138" x2="698" y2="138" stroke-width="5"/>
+  <line x1="561" y1="72" x2="548" y2="54" stroke-width="5"/>
+  <line x1="532" y1="101" x2="514" y2="90" stroke-width="5"/>
+  <line x1="524" y1="138" x2="502" y2="138" stroke-width="5"/>
+  <!-- Sun face -->
+  <circle cx="585" cy="122" r="8" fill="black" stroke="none"/>
+  <circle cx="615" cy="122" r="8" fill="black" stroke="none"/>
+  <path d="M582,144 Q600,158 618,144" fill="none" stroke-width="5"/>
+</svg>

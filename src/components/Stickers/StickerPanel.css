@@ -1,0 +1,104 @@
+.sticker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(60, 30, 100, 0.45);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  backdrop-filter: blur(4px);
+}
+
+.sticker-modal {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 8px 40px rgba(100, 60, 180, 0.25);
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: popIn 0.2s ease-out;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+.sticker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 8px;
+}
+
+.sticker-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #7c3aed;
+  margin: 0;
+}
+
+.sticker-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f3eaff;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: #7c3aed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sticker-close:hover { background: #e0ccff; }
+
+.sticker-hint {
+  font-size: 12px;
+  color: #9b7ec8;
+  padding: 0 24px 12px;
+  margin: 0;
+}
+
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 12px 20px 20px;
+  overflow-y: auto;
+}
+
+.sticker-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 16px;
+  background: #faf5ff;
+  border: 2px solid transparent;
+  transition: all 0.15s;
+}
+
+.sticker-item:hover {
+  background: #f0e8ff;
+  transform: scale(1.1);
+  border-color: #c084fc;
+}
+
+.sticker-img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.sticker-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #5b21b6;
+}

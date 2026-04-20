@@ -1,0 +1,65 @@
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 8px;
+}
+
+.action-group {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.action-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #f3eaff;
+  border: 2px solid transparent;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.action-btn:hover:not(:disabled) {
+  background: #e8d5ff;
+  transform: scale(1.1);
+}
+
+.action-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.action-btn.danger:hover {
+  background: #ffd5d5;
+}
+
+.action-btn.success:hover {
+  background: #d5ffd5;
+}
+
+.action-btn.primary:hover {
+  background: #d5e8ff;
+}
+
+@media (max-width: 600px) {
+  .action-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 4px 8px;
+  }
+  .action-group {
+    gap: 4px;
+  }
+  .action-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}

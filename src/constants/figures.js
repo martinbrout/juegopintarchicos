@@ -1,0 +1,70 @@
+export const FIGURES = [
+  {
+    id: 'libre',
+    name: 'Lienzo libre',
+    src: null,
+    refSrc: null,
+    thumb: null,
+    emoji: '🎨',
+  },
+  {
+    id: 'perrita',
+    name: 'Perrita',
+    src: './figures/perrita.svg',
+    refSrc: './figures/perrita.svg',
+    emoji: '🐶',
+  },
+  {
+    id: 'mariposa',
+    name: 'Mariposa',
+    src: './figures/mariposa.svg',
+    refSrc: './figures/mariposa.svg',
+    emoji: '🦋',
+  },
+  {
+    id: 'unicornio',
+    name: 'Unicornio',
+    src: './figures/unicornio.svg',
+    refSrc: './figures/unicornio.svg',
+    emoji: '🦄',
+  },
+  {
+    id: 'flor',
+    name: 'Flor',
+    src: './figures/flor.svg',
+    refSrc: './figures/flor.svg',
+    emoji: '🌸',
+  },
+  {
+    id: 'corazon',
+    name: 'Corazón',
+    src: './figures/corazon.svg',
+    refSrc: './figures/corazon.svg',
+    emoji: '💖',
+  },
+  {
+    id: 'arcoiris',
+    name: 'Arcoíris',
+    src: './figures/arcoiris.svg',
+    refSrc: './figures/arcoiris.svg',
+    emoji: '🌈',
+  },
+  {
+    id: 'jardin',
+    name: 'Jardín',
+    src: './figures/jardin.svg',
+    refSrc: './figures/jardin.svg',
+    emoji: '🌻',
+  },
+]
+
+export const STICKERS = [
+  { id: 'estrella', name: 'Estrella', src: './stickers/estrella.svg' },
+  { id: 'corazon', name: 'Corazón', src: './stickers/corazon.svg' },
+  { id: 'sol', name: 'Sol', src: './stickers/sol.svg' },
+  { id: 'luna', name: 'Luna', src: './stickers/luna.svg' },
+  { id: 'nube', name: 'Nube', src: './stickers/nube.svg' },
+  { id: 'arcoiris', name: 'Arcoíris', src: './stickers/arcoiris.svg' },
+  { id: 'sparkle', name: 'Brillito', src: './stickers/sparkle.svg' },
+  { id: 'flor', name: 'Florcita', src: './stickers/flor.svg' },
+]

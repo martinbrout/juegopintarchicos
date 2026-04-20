@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" fill="none" stroke="black" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Main heart -->
+  <path d="M600,720 C400,580 200,480 220,320 C240,200 340,160 420,180 C480,195 540,240 600,300 C660,240 720,195 780,180 C860,160 960,200 980,320 C1000,480 800,580 600,720 Z"/>
+  <!-- Inner heart decoration -->
+  <path d="M600,640 C460,540 320,460 335,345 C350,260 420,235 470,248 C515,260 560,295 600,340 C640,295 685,260 730,248 C780,235 850,260 865,345 C880,460 740,540 600,640 Z" stroke-width="4"/>
+  <!-- Cute face -->
+  <circle cx="530" cy="400" r="18" fill="black" stroke="none"/>
+  <circle cx="538" cy="393" r="7" fill="none" stroke="none"/>
+  <circle cx="670" cy="400" r="18" fill="black" stroke="none"/>
+  <circle cx="678" cy="393" r="7" fill="none" stroke="none"/>
+  <!-- Smile -->
+  <path d="M555,460 Q600,500 645,460" fill="none" stroke-width="7"/>
+  <!-- Rosy cheeks -->
+  <ellipse cx="500" cy="450" rx="28" ry="18" fill="none" stroke-width="3" stroke-dasharray="4,4"/>
+  <ellipse cx="700" cy="450" rx="28" ry="18" fill="none" stroke-width="3" stroke-dasharray="4,4"/>
+  <!-- Small sparkles -->
+  <line x1="300" y1="260" x2="300" y2="290" stroke-width="4"/>
+  <line x1="285" y1="275" x2="315" y2="275" stroke-width="4"/>
+  <line x1="880" y1="260" x2="880" y2="290" stroke-width="4"/>
+  <line x1="865" y1="275" x2="895" y2="275" stroke-width="4"/>
+  <line x1="600" y1="140" x2="600" y2="170" stroke-width="4"/>
+  <line x1="585" y1="155" x2="615" y2="155" stroke-width="4"/>
+</svg>

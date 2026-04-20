@@ -1,0 +1,75 @@
+.tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px;
+}
+
+.tool-group-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #9b7ec8;
+  padding-left: 2px;
+}
+
+.tool-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.tool-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 4px;
+  border-radius: 12px;
+  background: #f3eaff;
+  border: 2px solid transparent;
+  transition: all 0.15s;
+  min-height: 52px;
+}
+
+.tool-btn:hover {
+  background: #e8d5ff;
+  transform: scale(1.05);
+}
+
+.tool-btn.active {
+  background: #c084fc;
+  border-color: #7c3aed;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+}
+
+.tool-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.tool-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: #3a3a5c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 52px;
+}
+
+.tool-btn.active .tool-label {
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .tool-buttons {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .tool-btn {
+    min-height: 44px;
+    padding: 6px 4px;
+  }
+}
