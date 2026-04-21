@@ -11,7 +11,7 @@ export default function Toolbar({
   activeTool, onToolChange,
   canUndo, canRedo,
   onUndo, onRedo, onClear,
-  onSave, onPrint,
+  onSave,
   isMusicOn, onToggleMusic,
   onOpenFigures,
 }) {
@@ -36,7 +36,7 @@ export default function Toolbar({
         <ActionButtons
           canUndo={canUndo} canRedo={canRedo}
           onUndo={onUndo} onRedo={onRedo} onClear={onClear}
-          onSave={onSave} onPrint={onPrint}
+          onSave={onSave}
           isMusicOn={isMusicOn} onToggleMusic={onToggleMusic}
           onOpenFigures={onOpenFigures}
         />
@@ -80,7 +80,7 @@ export default function Toolbar({
           <ActionButtons
             canUndo={canUndo} canRedo={canRedo}
             onUndo={onUndo} onRedo={onRedo} onClear={onClear}
-            onSave={onSave} onPrint={onPrint}
+            onSave={onSave}
             isMusicOn={isMusicOn} onToggleMusic={onToggleMusic}
             onOpenFigures={onOpenFigures}
           />

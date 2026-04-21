@@ -12,8 +12,15 @@ import { DEFAULT_COLOR } from './constants/colors'
 import { DEFAULT_BRUSH } from './constants/brushes'
 import { DEFAULT_TOOL, TOOLS } from './constants/tools'
 import { FIGURES } from './constants/figures'
-import { exportAsPng, downloadPng, printDrawing } from './utils/canvasExport'
+import { exportAsPng, downloadPng } from './utils/canvasExport'
 import './App.css'
+
+const STORAGE_KEY = 'jpp_custom_figures'
+
+function loadCustomFigures() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]') }
+  catch { return [] }
+}
 
 let stickerIdCounter = 0
 
@@ -21,9 +28,8 @@ export default function App() {
   const [activeColor, setActiveColor] = useState(DEFAULT_COLOR)
   const [activeBrush, setActiveBrush] = useState(DEFAULT_BRUSH)
   const [activeTool, setActiveTool] = useState(DEFAULT_TOOL)
-  const [activeFigure, setActiveFigure] = useState(FIGURES[1]) // mariposa default
-  const [customOutline, setCustomOutline] = useState(null)
-  const [customOverlayUrl, setCustomOverlayUrl] = useState(null)
+  const [activeFigure, setActiveFigure] = useState(FIGURES[1])
+  const [customFigures, setCustomFigures] = useState(loadCustomFigures)
   const [stickers, setStickers] = useState([])
   const [pendingSticker, setPendingSticker] = useState(null)
 
@@ -74,10 +80,8 @@ export default function App() {
   }
 
   function getExportOverlay() {
-    if (customOverlayUrl) return customOverlayUrl
     const src = activeFigure?.src ?? null
     if (!src) return null
-    // Non-SVG figures are baked into the canvas — don't composite again
     return src.toLowerCase().split('?')[0].endsWith('.svg') ? src : null
   }
 
@@ -89,18 +93,9 @@ export default function App() {
     playSfx('guardar')
   }
 
-  async function handlePrint() {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const dataUrl = await exportAsPng(canvas, stickers, getExportOverlay())
-    printDrawing(dataUrl)
-  }
-
   function handleFigureSelect(fig) {
     clearCanvas()
     setStickers([])
-    setCustomOutline(null)
-    setCustomOverlayUrl(null)
     setActiveFigure(fig)
     clearHistory()
     setActiveTool(TOOLS.DRAW)
@@ -132,14 +127,18 @@ export default function App() {
     setStickers(prev => prev.map(s => s.id === id ? { ...s, ...updates } : s))
   }
 
-  function handlePhotoConfirm({ imageData, dataUrl }) {
-    setCustomOutline(imageData)
-    setCustomOverlayUrl(dataUrl)
-    setActiveFigure(null)
-    clearCanvas()
-    setStickers([])
-    clearHistory()
-    setActiveTool(TOOLS.DRAW)
+  function handlePhotoConfirm({ name, processedDataUrl }) {
+    const newFig = {
+      id: `custom_${Date.now()}`,
+      name,
+      src: processedDataUrl,
+      refSrc: processedDataUrl,
+      emoji: '📷',
+    }
+    const updated = [...customFigures, newFig]
+    setCustomFigures(updated)
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(updated)) } catch {}
+    handleFigureSelect(newFig)
   }
 
   function handleStrokeEnd(e) {
@@ -171,7 +170,7 @@ export default function App() {
           activeTool={activeTool} onToolChange={handleToolChange}
           canUndo={canUndo} canRedo={canRedo}
           onUndo={handleUndo} onRedo={handleRedo} onClear={handleClear}
-          onSave={handleSave} onPrint={handlePrint}
+          onSave={handleSave}
           isMusicOn={isMusicOn} onToggleMusic={toggleMusic}
           onOpenFigures={() => setShowGallery(true)}
         />
@@ -181,8 +180,6 @@ export default function App() {
           activeBrush={activeBrush}
           activeColor={activeColor}
           activeFigure={activeFigure}
-          customOutline={customOutline}
-          customOverlayUrl={customOverlayUrl}
           figureInitKey={figureInitKey}
           stickers={stickers}
           onAddSticker={handleStickerPlace}
@@ -204,6 +201,7 @@ export default function App() {
           onSelect={handleFigureSelect}
           onClose={() => setShowGallery(false)}
           onUploadPhoto={() => setShowPhotoUpload(true)}
+          customFigures={customFigures}
         />
       )}
 
