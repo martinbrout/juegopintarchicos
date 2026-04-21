@@ -55,13 +55,12 @@ export function bucketFill(drawingCanvas, referenceCanvas, startX, startY, fillC
 
     const i4 = idx * 4
 
-    // Must match the starting color
-    if (
-      drawPixels[i4]     !== tr ||
-      drawPixels[i4 + 1] !== tg ||
-      drawPixels[i4 + 2] !== tb ||
-      drawPixels[i4 + 3] !== ta
-    ) continue
+    // Must be within tolerance of the starting color (handles JPEG compression noise)
+    const dist = Math.abs(drawPixels[i4]     - tr)
+               + Math.abs(drawPixels[i4 + 1] - tg)
+               + Math.abs(drawPixels[i4 + 2] - tb)
+               + Math.abs(drawPixels[i4 + 3] - ta)
+    if (dist > 40) continue
 
     // Stop at outline boundary in reference canvas
     if (isBoundary(refPixels, i4)) continue

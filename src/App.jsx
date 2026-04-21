@@ -30,6 +30,7 @@ export default function App() {
   const [showGallery, setShowGallery] = useState(false)
   const [showStickerPanel, setShowStickerPanel] = useState(false)
   const [showPhotoUpload, setShowPhotoUpload] = useState(false)
+  const [figureInitKey, setFigureInitKey] = useState(0)
 
   const referenceCanvasRef = useRef(null)
 
@@ -54,7 +55,7 @@ export default function App() {
   function handleUndo() {
     const snapshot = undo()
     if (snapshot) restoreSnapshot(snapshot)
-    else clearCanvas()
+    else { clearCanvas(); setFigureInitKey(k => k + 1) }
     playSfx('borrar')
   }
 
@@ -68,14 +69,22 @@ export default function App() {
     saveSnapshot()
     clearCanvas()
     setStickers([])
+    setFigureInitKey(k => k + 1)
     playSfx('borrar')
+  }
+
+  function getExportOverlay() {
+    if (customOverlayUrl) return customOverlayUrl
+    const src = activeFigure?.src ?? null
+    if (!src) return null
+    // Non-SVG figures are baked into the canvas — don't composite again
+    return src.toLowerCase().split('?')[0].endsWith('.svg') ? src : null
   }
 
   async function handleSave() {
     const canvas = canvasRef.current
     if (!canvas) return
-    const overlayUrl = customOverlayUrl ?? activeFigure?.src ?? null
-    const dataUrl = await exportAsPng(canvas, stickers, overlayUrl)
+    const dataUrl = await exportAsPng(canvas, stickers, getExportOverlay())
     downloadPng(dataUrl)
     playSfx('guardar')
   }
@@ -83,8 +92,7 @@ export default function App() {
   async function handlePrint() {
     const canvas = canvasRef.current
     if (!canvas) return
-    const overlayUrl = customOverlayUrl ?? activeFigure?.src ?? null
-    const dataUrl = await exportAsPng(canvas, stickers, overlayUrl)
+    const dataUrl = await exportAsPng(canvas, stickers, getExportOverlay())
     printDrawing(dataUrl)
   }
 
@@ -118,9 +126,6 @@ export default function App() {
       scale: 1,
     }])
     playSfx('sticker')
-    // After placing, switch back to draw mode
-    setActiveTool(TOOLS.DRAW)
-    setPendingSticker(null)
   }
 
   function handleUpdateSticker(id, updates) {
@@ -178,6 +183,7 @@ export default function App() {
           activeFigure={activeFigure}
           customOutline={customOutline}
           customOverlayUrl={customOverlayUrl}
+          figureInitKey={figureInitKey}
           stickers={stickers}
           onAddSticker={handleStickerPlace}
           onUpdateSticker={handleUpdateSticker}

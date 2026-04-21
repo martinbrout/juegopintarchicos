@@ -1,7 +1,7 @@
 import { TOOLS, TOOL_LABELS, TOOL_ICONS } from '../../constants/tools'
 import './ToolButton.css'
 
-const TOOL_LIST = [TOOLS.DRAW, TOOLS.FILL, TOOLS.STICKER, TOOLS.PHOTO]
+const TOOL_LIST = [TOOLS.DRAW, TOOLS.FILL, TOOLS.STICKER]
 
 export default function ToolSelector({ activeTool, onChange }) {
   return (

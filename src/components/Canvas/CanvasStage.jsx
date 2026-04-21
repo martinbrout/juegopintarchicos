@@ -8,6 +8,10 @@ import './CanvasStage.css'
 const CANVAS_W = 1200
 const CANVAS_H = 900
 
+function isSvgUrl(url) {
+  return !url || url.toLowerCase().split('?')[0].endsWith('.svg')
+}
+
 export default function CanvasStage({
   activeTool,
   activeBrush,
@@ -15,6 +19,7 @@ export default function CanvasStage({
   activeFigure,
   customOutline,
   customOverlayUrl,
+  figureInitKey,
   stickers,
   onAddSticker,
   onUpdateSticker,
@@ -30,12 +35,37 @@ export default function CanvasStage({
   const internalRefCanvasRef = useRef(null)
   const referenceCanvasRef = externalRefCanvasRef ?? internalRefCanvasRef
 
+  // Set canvas dimensions on mount
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     if (canvas.width !== CANVAS_W) canvas.width = CANVAS_W
     if (canvas.height !== CANVAS_H) canvas.height = CANVAS_H
   }, [])
+
+  // Bake non-SVG coloring pages into the drawing canvas so bucket fill
+  // works against real pixels (white areas) instead of uniform transparency.
+  // Photo uploads (customOverlayUrl) keep the z-1 background approach.
+  useEffect(() => {
+    if (customOverlayUrl) return
+    const src = activeFigure?.src
+    if (!src || isSvgUrl(src)) return
+
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+
+    ctx.fillStyle = '#ffffff'
+    ctx.fillRect(0, 0, CANVAS_W, CANVAS_H)
+
+    const img = new Image()
+    img.onload = () => {
+      ctx.fillStyle = '#ffffff'
+      ctx.fillRect(0, 0, CANVAS_W, CANVAS_H)
+      ctx.drawImage(img, 0, 0, CANVAS_W, CANVAS_H)
+    }
+    img.src = src
+  }, [activeFigure?.src, customOverlayUrl, figureInitKey])
 
   function getScaled(e, canvas) {
     const rect = canvas.getBoundingClientRect()
@@ -82,7 +112,16 @@ export default function CanvasStage({
     endStroke(e)
   }
 
-  const overlayUrl = customOverlayUrl ?? activeFigure?.src ?? null
+  // Determine overlay strategy:
+  // - SVG figure → overlay on top (z=20), transparent areas drawn on canvas
+  // - Non-SVG figure → image baked into canvas, no overlay layer
+  // - Photo upload (customOverlayUrl) → background at z=1, draw over photo
+  const figSrc = activeFigure?.src ?? null
+  const isNonSvgFigure = figSrc && !isSvgUrl(figSrc) && !customOverlayUrl
+  const svgOverlaySrc = customOverlayUrl
+    ? null
+    : (isSvgUrl(figSrc) ? figSrc : null)
+  const bgOverlaySrc = customOverlayUrl ?? null
 
   return (
     <div className="canvas-stage-wrapper">
@@ -92,6 +131,9 @@ export default function CanvasStage({
           figureSrc={activeFigure?.refSrc ?? activeFigure?.src}
           customOutlineImageData={customOutline}
         />
+
+        {/* Photo upload: show photo as background behind drawing canvas */}
+        {bgOverlaySrc && <SvgOverlay src={bgOverlaySrc} isBackground />}
 
         <canvas
           ref={canvasRef}
@@ -107,7 +149,8 @@ export default function CanvasStage({
           onPointerLeave={handlePointerUp}
         />
 
-        <SvgOverlay src={overlayUrl} />
+        {/* SVG figure: outline overlay on top so lines are always crisp */}
+        {svgOverlaySrc && <SvgOverlay src={svgOverlaySrc} />}
 
         <StickerLayer
           stickers={stickers}

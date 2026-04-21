@@ -9,7 +9,8 @@
   box-shadow: 2px 0 12px rgba(0,0,0,0.06);
 }
 
-.toolbar-scroll {
+/* ── Desktop scroll container ── */
+.toolbar-desktop {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -18,16 +19,11 @@
   scrollbar-color: #c084fc #f3eaff;
 }
 
-.toolbar-scroll::-webkit-scrollbar {
-  width: 4px;
-}
-.toolbar-scroll::-webkit-scrollbar-track {
-  background: #f3eaff;
-}
-.toolbar-scroll::-webkit-scrollbar-thumb {
-  background: #c084fc;
-  border-radius: 4px;
-}
+.toolbar-desktop::-webkit-scrollbar { width: 4px; }
+.toolbar-desktop::-webkit-scrollbar-track { background: #f3eaff; }
+.toolbar-desktop::-webkit-scrollbar-thumb { background: #c084fc; border-radius: 4px; }
+
+.toolbar-mobile { display: none; }
 
 .toolbar-divider {
   height: 1px;
@@ -35,32 +31,113 @@
   margin: 2px 10px;
 }
 
-/* Mobile: toolbar becomes a bottom bar */
+/* ── Mobile: bottom tab panel ── */
 @media (max-width: 700px) {
   .toolbar {
     width: 100%;
     height: auto;
-    max-height: 180px;
     border-right: none;
     border-top: 2px solid var(--color-border);
     box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
   }
 
-  .toolbar-scroll {
+  .toolbar-desktop { display: none; }
+
+  .toolbar-mobile {
     display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 6px 4px;
-    gap: 0;
-    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
   }
 
-  .toolbar-divider {
-    width: 1px;
-    height: auto;
-    align-self: stretch;
-    margin: 4px 4px;
-    background: var(--color-border);
+  /* Content area for the active tab */
+  .toolbar-tab-content {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-shrink: 0;
+    max-height: 130px;
+    padding: 4px 0;
+  }
+
+  .toolbar-tab-content .tool-group {
+    width: 100%;
+    padding: 4px 8px;
+  }
+
+  .toolbar-tab-content .tool-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    width: 100%;
+  }
+
+  .toolbar-tab-content .tool-btn {
+    min-height: 48px;
+    padding: 6px 2px;
+  }
+
+  /* Sticky footer: tab buttons + action buttons */
+  .toolbar-mobile-footer {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+  }
+
+  /* Tab selector row */
+  .toolbar-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .toolbar-tab {
+    flex: 1;
+    padding: 8px 4px;
+    font-size: 11px;
+    font-weight: 700;
+    background: #faf5ff;
+    border: none;
+    color: #9b7ec8;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+
+  .toolbar-tab:active,
+  .toolbar-tab:hover {
+    background: #f0e8ff;
+  }
+
+  .toolbar-tab.active {
+    background: #c084fc;
+    color: #fff;
+  }
+
+  /* Compact action buttons in mobile */
+  .toolbar-mobile .action-buttons {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 8px;
+  }
+
+  .toolbar-mobile .action-group {
+    gap: 4px;
+  }
+
+  .toolbar-mobile .action-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+
+  /* Keep tool-group label hidden on mobile to save space */
+  .toolbar-tab-content .tool-group-label {
+    display: none;
+  }
+
+  .toolbar-tab-content .tool-group {
+    padding: 4px 6px;
   }
 }

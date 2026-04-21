@@ -27,10 +27,10 @@ export function useCanvas() {
     ctx.lineJoin = 'round'
 
     if (brush === BRUSHES.ERASER) {
-      ctx.globalCompositeOperation = 'destination-out'
+      ctx.globalCompositeOperation = 'source-over'
       ctx.lineWidth = BRUSH_SIZES[BRUSHES.ERASER]
       ctx.globalAlpha = 1
-      ctx.strokeStyle = 'rgba(0,0,0,1)'
+      ctx.strokeStyle = '#ffffff'
       return
     }
 
@@ -50,6 +50,12 @@ export function useCanvas() {
       ctx.lineWidth = BRUSH_SIZES[BRUSHES.CRAYON]
       ctx.globalAlpha = 0.85
       ctx.shadowBlur = 0
+    } else if (brush === BRUSHES.WATERCOLOR) {
+      ctx.lineWidth = BRUSH_SIZES[BRUSHES.WATERCOLOR]
+      ctx.globalAlpha = 0.07
+      ctx.lineCap = 'round'
+      ctx.shadowBlur = 14
+      ctx.shadowColor = color
     }
   }
 
@@ -84,8 +90,7 @@ export function useCanvas() {
     applyBrushStyle(ctx, brush, color)
     ctx.beginPath()
     ctx.arc(pt.x, pt.y, ctx.lineWidth / 2, 0, Math.PI * 2)
-    ctx.fillStyle = brush === BRUSHES.ERASER ? 'rgba(0,0,0,1)' : color
-    if (brush !== BRUSHES.ERASER) ctx.globalCompositeOperation = 'source-over'
+    ctx.fillStyle = brush === BRUSHES.ERASER ? '#ffffff' : color
     ctx.fill()
     ctx.restore()
 

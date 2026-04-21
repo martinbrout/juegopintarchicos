@@ -64,9 +64,9 @@
   color: #fff;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .tool-buttons {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .tool-btn {
     min-height: 44px;

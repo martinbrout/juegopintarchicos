@@ -1,61 +1,35 @@
+const figureUrls = import.meta.glob(
+  '/src/assets/figures/*',
+  { eager: true, query: '?url', import: 'default' }
+)
+
+const FIGURE_META = {
+  perrita:  { name: 'Perrita',   emoji: '🐶' },
+  mariposa: { name: 'Mariposa',  emoji: '🦋' },
+  unicornio: { name: 'Unicornio', emoji: '🦄' },
+  flor:     { name: 'Flor',      emoji: '🌸' },
+  corazon:  { name: 'Corazón',   emoji: '💖' },
+  arcoiris: { name: 'Arcoíris',  emoji: '🌈' },
+  jardin:   { name: 'Jardín',    emoji: '🌻' },
+  bluey:    { name: 'Bluey',     emoji: '🐾' },
+  stitch:   { name: 'Stitch',    emoji: '👽' },
+}
+
+function parseName(path) {
+  const base = path.split('/').pop().replace(/\.[^.]+$/, '')
+  return base.charAt(0).toUpperCase() + base.slice(1).replace(/[-_ ]/g, ' ')
+}
+
+const dynamicFigures = Object.entries(figureUrls).map(([path, url]) => {
+  const id = path.split('/').pop().replace(/\.[^.]+$/, '').toLowerCase().replace(/\s+/g, '_')
+  const key = id.replace(/_\d+$/, '').replace(/\d+$/, '')
+  const meta = FIGURE_META[key] ?? FIGURE_META[id] ?? { name: parseName(path), emoji: '🖼️' }
+  return { id, name: meta.name, emoji: meta.emoji, src: url, refSrc: url }
+})
+
 export const FIGURES = [
-  {
-    id: 'libre',
-    name: 'Lienzo libre',
-    src: null,
-    refSrc: null,
-    thumb: null,
-    emoji: '🎨',
-  },
-  {
-    id: 'perrita',
-    name: 'Perrita',
-    src: './figures/perrita.svg',
-    refSrc: './figures/perrita.svg',
-    emoji: '🐶',
-  },
-  {
-    id: 'mariposa',
-    name: 'Mariposa',
-    src: './figures/mariposa.svg',
-    refSrc: './figures/mariposa.svg',
-    emoji: '🦋',
-  },
-  {
-    id: 'unicornio',
-    name: 'Unicornio',
-    src: './figures/unicornio.svg',
-    refSrc: './figures/unicornio.svg',
-    emoji: '🦄',
-  },
-  {
-    id: 'flor',
-    name: 'Flor',
-    src: './figures/flor.svg',
-    refSrc: './figures/flor.svg',
-    emoji: '🌸',
-  },
-  {
-    id: 'corazon',
-    name: 'Corazón',
-    src: './figures/corazon.svg',
-    refSrc: './figures/corazon.svg',
-    emoji: '💖',
-  },
-  {
-    id: 'arcoiris',
-    name: 'Arcoíris',
-    src: './figures/arcoiris.svg',
-    refSrc: './figures/arcoiris.svg',
-    emoji: '🌈',
-  },
-  {
-    id: 'jardin',
-    name: 'Jardín',
-    src: './figures/jardin.svg',
-    refSrc: './figures/jardin.svg',
-    emoji: '🌻',
-  },
+  { id: 'libre', name: 'Lienzo libre', src: null, refSrc: null, emoji: '🎨' },
+  ...dynamicFigures,
 ]
 
 export const STICKERS = [

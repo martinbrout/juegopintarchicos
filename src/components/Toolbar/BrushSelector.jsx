@@ -1,7 +1,7 @@
 import { BRUSHES, BRUSH_LABELS, BRUSH_ICONS } from '../../constants/brushes'
 import './ToolButton.css'
 
-const BRUSH_LIST = [BRUSHES.PENCIL, BRUSHES.MARKER, BRUSHES.CRAYON, BRUSHES.ERASER]
+const BRUSH_LIST = [BRUSHES.PENCIL, BRUSHES.MARKER, BRUSHES.CRAYON, BRUSHES.WATERCOLOR, BRUSHES.ERASER]
 
 export default function BrushSelector({ activeBrush, onChange, onSwitchToDraw }) {
   function handleClick(brush) {
