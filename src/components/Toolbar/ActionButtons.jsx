@@ -4,7 +4,6 @@ export default function ActionButtons({
   canUndo, canRedo,
   onUndo, onRedo, onClear,
   onSave,
-  isMusicOn, onToggleMusic,
   onOpenFigures,
 }) {
   return (
@@ -26,9 +25,6 @@ export default function ActionButtons({
         </button>
         <button className="action-btn primary" onClick={onOpenFigures} title="Elegir figura">
           🖼️
-        </button>
-        <button className="action-btn" onClick={onToggleMusic} title={isMusicOn ? 'Silenciar' : 'Activar música'}>
-          {isMusicOn ? '🔊' : '🔇'}
         </button>
       </div>
     </div>

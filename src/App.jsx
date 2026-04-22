@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { bucketFill } from './utils/bucketFill'
 import CanvasStage from './components/Canvas/CanvasStage'
 import Toolbar from './components/Toolbar/Toolbar'
@@ -37,6 +38,7 @@ export default function App() {
   const [showStickerPanel, setShowStickerPanel] = useState(false)
   const [showPhotoUpload, setShowPhotoUpload] = useState(false)
   const [figureInitKey, setFigureInitKey] = useState(0)
+  const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   const referenceCanvasRef = useRef(null)
 
@@ -158,9 +160,19 @@ export default function App() {
       <header className="app-header">
         <span className="app-logo">🎨</span>
         <h1 className="app-title">Juego de Pintar</h1>
-        <button className="app-header-btn" onClick={() => setShowGallery(true)} title="Elegir figura">
+
+        <button className="app-header-btn app-desktop-only" onClick={() => setShowGallery(true)} title="Elegir figura">
           🖼️ Figuras
         </button>
+
+        <div className="app-mobile-controls">
+          <button className="app-header-icon-btn" onClick={handleUndo} disabled={!canUndo} title="Deshacer">↩️</button>
+          <button className="app-header-icon-btn" onClick={handleRedo} disabled={!canRedo} title="Rehacer">↪️</button>
+          <button className="app-header-icon-btn" onClick={() => setShowGallery(true)} title="Figuras">🖼️</button>
+          <div className="app-mobile-menu-wrapper">
+            <button className="app-header-icon-btn" onClick={() => setShowMobileMenu(v => !v)} title="Más opciones">⋮</button>
+          </div>
+        </div>
       </header>
 
       <div className="app-body">
@@ -171,7 +183,6 @@ export default function App() {
           canUndo={canUndo} canRedo={canRedo}
           onUndo={handleUndo} onRedo={handleRedo} onClear={handleClear}
           onSave={handleSave}
-          isMusicOn={isMusicOn} onToggleMusic={toggleMusic}
           onOpenFigures={() => setShowGallery(true)}
         />
 
@@ -217,6 +228,14 @@ export default function App() {
           onConfirm={handlePhotoConfirm}
           onClose={() => setShowPhotoUpload(false)}
         />
+      )}
+
+      {showMobileMenu && createPortal(
+        <div className="app-mobile-dropdown">
+          <button onClick={() => { handleClear(); setShowMobileMenu(false) }}>🗑️ Limpiar</button>
+          <button onClick={() => { handleSave(); setShowMobileMenu(false) }}>💾 Guardar</button>
+        </div>,
+        document.body
       )}
     </div>
   )

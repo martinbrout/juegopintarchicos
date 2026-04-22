@@ -4,15 +4,8 @@ const figureUrls = import.meta.glob(
 )
 
 const FIGURE_META = {
-  perrita:  { name: 'Perrita',   emoji: '🐶' },
-  mariposa: { name: 'Mariposa',  emoji: '🦋' },
-  unicornio: { name: 'Unicornio', emoji: '🦄' },
-  flor:     { name: 'Flor',      emoji: '🌸' },
   corazon:  { name: 'Corazón',   emoji: '💖' },
-  arcoiris: { name: 'Arcoíris',  emoji: '🌈' },
-  jardin:   { name: 'Jardín',    emoji: '🌻' },
   bluey:    { name: 'Bluey',     emoji: '🐾' },
-  stitch:   { name: 'Stitch',    emoji: '👽' },
 }
 
 function parseName(path) {
